@@ -1,0 +1,9 @@
+.idea/
+node_modules/
+build/
+temp/
+
+tmp/*
+!temp/.gitkeep
+.env
+/Teste

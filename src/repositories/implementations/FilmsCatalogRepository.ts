@@ -115,4 +115,14 @@ export class FilmsCatalogRepository implements IFilmsCatalogRepository {
 		);
 		return response;
 	}
+
+	getCountRows(): Promise<QueryResult<any>> {
+		const response = this.connectionDB.query(
+			`SELECT
+				COUNT(*) AS count
+			FROM
+				CATALOGO_FILMES`
+		);
+		return response;
+	}
 }

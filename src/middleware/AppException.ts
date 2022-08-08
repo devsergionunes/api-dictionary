@@ -11,7 +11,6 @@ export class AppExceptionHandler {
 				errors: error.errors
 			});
 		}
-		console.log("ERROR ==>",error);
 
 		return res.status(500).json({
 			message: "A plataforma está apresentando uma instabilidade momentânea. Tente novamente!",

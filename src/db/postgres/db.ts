@@ -2,6 +2,8 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable object-shorthand */
 
+import { readFile } from "fs/promises";
+import { resolve } from "path";
 import { Pool, PoolClient, QueryResult, QueryResultRow } from "pg";
 
 export interface IPoolClient extends Omit<PoolClient, "query"> {
@@ -11,14 +13,13 @@ export interface IPoolClient extends Omit<PoolClient, "query"> {
 const pool = new Pool({
     user: "postgres",
     host: "localhost",
-    password: "postgres",
+    password: "1234",
     port: 5432,
-    max: 50, // Numero maximo e pool de conexoes
     ssl: false,
     Promise: Promise,
 });
 
-const getClient = async () =>{
+export const getClient = async () =>{
   const client: IPoolClient = await pool.connect();
   const query = client.query as any;
 
@@ -31,8 +32,7 @@ const getClient = async () =>{
 
   client.query = (queryText:string, params?: any[], callback?: (err: Error, result: QueryResult<QueryResultRow>) => void): Promise<QueryResult<any>> => {
     lastQuery = queryText;
-		// console.log(`[QUERY] \n ${queryText}`);
-    return query.apply([client, queryText, params, callback]);
+    return query.apply(client, [queryText, params, callback]);
   };
   client.release = () => {
     clearTimeout(timeout);
@@ -43,5 +43,23 @@ const getClient = async () =>{
   return client;
 };
 
+export const InitScriptsDB = async () => {
+	const client = await getClient();
+	try {
+		client.query("BEGIN");
+		const { rows: isScripts } = (await client.query("SELECT * FROM information_schema.tables WHERE table_name = 'catalogo_filmes'"));
+		if (isScripts.length) return;
 
-export { getClient };
+		const file = await readFile(resolve(__dirname, "..", "..", "..",  "scripts/scripts-ddl.sql"), { encoding: "utf-8" });
+		const SQLArray = file.split(";");
+
+		for await (const sql of SQLArray) {
+			await client.query(sql, []);
+		}
+		client.query("COMMIT");
+	} catch (err) {
+		client.query("ROLLBACK");
+	} finally {
+		client.release();
+	}
+};

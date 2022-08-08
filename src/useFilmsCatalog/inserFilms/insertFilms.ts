@@ -1,23 +1,26 @@
-/* eslint-disable arrow-body-style */
-/* eslint-disable no-return-await */
+/* eslint-disable class-methods-use-this */
+import { getClient } from "../../db/postgres/db";
 import { FilmsCatalog } from "../../entities/FilmsCatalog";
-import { IFilmsCatalogRepository } from "../../repositories/IFilmsCatalogRepository";
+import { AppException } from "../../errors/AppException";
+import { FilmsCatalogRepository } from "../../repositories/implementations/FilmsCatalogRepository";
 
 export class InsertFilmsUseCase {
-	constructor(
-		private filmsCatalogRepository: IFilmsCatalogRepository
-	) { }
-
-  public async execute(filmsMock:FilmsCatalog[]): Promise<FilmsCatalog | Array<FilmsCatalog>> {
-    // aqui vamos receber a array de filmes como parametro para ser inserida no banco de dados
-
-		const response = filmsMock.map(async (films) => {
-			return await this.filmsCatalogRepository.save(
-				new FilmsCatalog(films)
-			);
-		});
-		console.log(response);
-
-    return response as any;
+   async execute(films:FilmsCatalog[]): Promise<{ message : string}> {
+		const client = await getClient();
+		try {
+			client.query("BEGIN");
+			const filmsCatalogRepository = new FilmsCatalogRepository(client);
+			for await (const film of films) {
+				await filmsCatalogRepository.save(new FilmsCatalog(film));
+			}
+			client.query("COMMIT");
+			return { message : "Erro ao atualizar filmes" };
+		} catch (error:any) {
+			client.query("ROLLBACK");
+			const errorMessage = error instanceof AppException ? error.message : "Erro ao atualizar filmes";
+			throw new AppException(errorMessage);
+		} finally {
+			client.release();
+		}
   }
 }

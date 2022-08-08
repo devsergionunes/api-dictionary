@@ -1,10 +1,11 @@
 import { Router } from "express";
-import { insertFilmsController } from "../useFilmsCatalog/inserFilms";
+import { InsertFilmsController } from "../useFilmsCatalog/inserFilms/insertFilmsController";
+import { GetAllFilmsController } from "../useFilmsCatalog/getAllFilms/getAllFilmsController";
 
 const FilmsRoutes = Router({ mergeParams: true });
 
-FilmsRoutes.post("/", insertFilmsController.execute);
-FilmsRoutes.get("/", insertFilmsController.execute);
+FilmsRoutes.post("/", InsertFilmsController.execute);
+FilmsRoutes.get("/", GetAllFilmsController.execute);
 
 export { FilmsRoutes };
 

@@ -22,8 +22,11 @@
 ## ROTAS:
 
 ```
-GET /api/films
-POST /api/films
+GET /api/words
+GET /api/words/all
+GET /api/favorite
+POST /api/favorite
+DELETE /api/favorite
 ```
 <hr>
 

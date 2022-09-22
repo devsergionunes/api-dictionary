@@ -22,7 +22,6 @@
     ".prettierrc": "javascript"
   },
   "terminal.integrated.fontSize": 14,
-  // Define o tema dos ícones na sidebar
   "workbench.startupEditor": "welcomePage",
   "editor.tabSize": 2,
   "emmet.triggerExpansionOnTab": true,

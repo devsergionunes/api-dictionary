@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { FilmsRoutes } from "./films.routes";
+import { WordsRoutes } from "./words.routes";
 
 const routes = Router({ mergeParams: true });
 
-routes.use("/api/films/", FilmsRoutes);
+routes.use("/api/words/", WordsRoutes);
 
 export { routes };

@@ -1,13 +1,15 @@
 import { Router } from "express";
-import { AddWordFavoriteController } from "../useFilmsCatalog/addWordFavorite/addWordFavoriteController";
-import { GetAllWordsController  } from "../useFilmsCatalog/getAllWords/getAllWordsController";
-import { GetWordController } from "../useFilmsCatalog/getWord/getAllWordsController";
-import { RemoveWordFavoriteController } from "../useFilmsCatalog/removeWordFavorite/removeWordFavoriteController";
+import { AddWordFavoriteController } from "../useWords/addWordFavorite/addWordFavoriteController";
+import { GetAllWordsController  } from "../useWords/getAllWords/getAllWordsController";
+import { GetAllWordsFavoriteController } from "../useWords/getAllWordsFavorite/getAllWordsFavoriteController";
+import { GetWordController } from "../useWords/getWord/getAllWordsController";
+import { RemoveWordFavoriteController } from "../useWords/removeWordFavorite/removeWordFavoriteController";
 
 const WordsRoutes = Router({ mergeParams: true });
 
 WordsRoutes.get("/", GetWordController.execute);
 WordsRoutes.get("/all", GetAllWordsController.execute);
+WordsRoutes.get("/favorite", GetAllWordsFavoriteController.execute);
 WordsRoutes.post("/favorite/:id", AddWordFavoriteController.execute);
 WordsRoutes.delete("/favorite/:id", RemoveWordFavoriteController.execute);
 

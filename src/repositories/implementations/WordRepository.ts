@@ -2,7 +2,6 @@
 
 import { QueryResult } from "pg";
 import { IPoolClient } from "../../db/postgres/db";
-import { Word } from "../../entities/WordEntities";
 import { IWordRepository } from "../IWordRepository";
 
 export class WordRepository implements IWordRepository {
@@ -12,32 +11,16 @@ export class WordRepository implements IWordRepository {
 		this.connectionDB = connectionDB;
 	}
 
-	getAllFavorite(offset: number, limit: number): Promise<QueryResult<any>> {
-		throw new Error("Method not implemented.");
-	}
-
-	public async getAll(offset: number, limit: number): Promise<QueryResult<any>> {
+	async getAllFavorite(offset: number, limit: number): Promise<QueryResult<any>> {
 		const response = await this.connectionDB.query(
 			`SELECT
 				id,
-				title,
-				original_title,
-				original_title_romanised,
-				image,
-				movie_banner,
-				description,
-				director,
-				producer,
-				release_date,
-				running_time,
-				rt_score,
-				people,
-				species,
-				locations,
-				vehicles,
-				url
+				word,
+				ind_favorite
 			FROM
-				CATALOGO_FILMES
+				WORD_LIST
+			WHERE
+				ind_favorite = TRUE
 			ORDER BY
 				id
 			LIMIT $1 OFFSET $2`,
@@ -46,11 +29,42 @@ export class WordRepository implements IWordRepository {
 		return response;
 	}
 
-	addFavorite(id:number): Promise<QueryResult<any>> {
-		throw new Error("Method not implemented.");
+	public async getAll(offset: number, limit: number): Promise<QueryResult<any>> {
+		const response = await this.connectionDB.query(
+			`SELECT
+				id,
+				word,
+				ind_favorite
+			FROM
+				WORD_LIST
+			ORDER BY
+				id
+			LIMIT $1 OFFSET $2`,
+			[limit, offset]
+		);
+		return response;
 	}
 
-	removeFavorite(id: number): Promise<QueryResult<any>> {
-		throw new Error("Method not implemented.");
+
+	insert(word: string): Promise<QueryResult<any>> {
+		const response = this.connectionDB.query(`
+			INSERT INTO
+				WORD_LIST (WORD, IND_FAVORITE, ID)
+			VALUES ($1, $2, (nextval('SEQ_WORD_LIST')))`,
+			[word, false]);
+		return response;
+	}
+
+	toogleFavoriteById(id:number, value: boolean): Promise<QueryResult<any>> {
+		const response = this.connectionDB.query(`
+			UPDATE
+				WORD_LIST
+			SET
+				IND_FAVORITE = $2
+			WHERE
+				ID = $1
+			RETURNING *`,
+			[id, value]);
+		return response;
 	}
 }

@@ -6,6 +6,11 @@ declare namespace NodeJS {
 		//	Ambiente
 		ENVIRONMENT: "development" | "production";
 
+		BASE_URL: string;
+		PORT: string;
+
+		X_API_KEY: string;
+
 		//	Database
 		DB_HOST: string;
 		DB_USER: string;

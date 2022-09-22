@@ -1,5 +1,5 @@
 {
-  "name": "api-filmscatalog",
+  "name": "api-dictionary",
   "version": "1.0.0",
   "description": "",
   "main": "src/server.ts",
@@ -14,6 +14,7 @@
   "dependencies": {
     "axios": "^0.27.2",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
     "express": "^4.18.0",
     "express-async-errors": "^3.1.1",
     "pg": "^8.2.2",

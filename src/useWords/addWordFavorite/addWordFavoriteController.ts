@@ -7,7 +7,7 @@ export class AddWordFavoriteController {
 
 		const { id } = request.params;
 
-		await addWordFavoriteUseCase.execute(Number(id));
-		return response.status(201).json({ message : "Palavra adiciciona ao favoritos" });
+		const res = await addWordFavoriteUseCase.execute(Number(id));
+		return response.status(201).json(res);
   }
 }

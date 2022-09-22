@@ -2,19 +2,21 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable object-shorthand */
 
+import { readFileSync } from "fs";
 import { readFile } from "fs/promises";
 import { resolve } from "path";
 import { Pool, PoolClient, QueryResult, QueryResultRow } from "pg";
+import { WordRepository } from "../../repositories/implementations/WordRepository";
 
 export interface IPoolClient extends Omit<PoolClient, "query"> {
 	query: (queryText:string, params?: any[], callback?: (err: Error, result: QueryResult<QueryResultRow>) => void) => Promise<QueryResult<any>>;
 }
 
 const pool = new Pool({
-    user: "postgres",
-    host: "localhost",
-    password: "1234",
-    port: 5432,
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
     ssl: false,
     Promise: Promise,
 });
@@ -43,20 +45,41 @@ export const getClient = async () =>{
   return client;
 };
 
+async function insertFileTextDB() {
+	const client = await getClient();
+	try {
+		const wordRepository = new WordRepository(client);
+		const wordsList = readFileSync(`${__dirname  }/words.txt`, "utf8").split("\n");
+		const words = wordsList.filter((word) => !word.includes(" "))
+		.filter((word) => word.length > 2)
+		.filter((word) => word.length < 30)
+		// eslint-disable-next-line prefer-regex-literals
+		.filter((word) => RegExp(/^[a-zA-Z]+$/).test(word));
+
+		words.forEach(async (word) => {
+			await wordRepository.insert(word);
+		});
+	} catch (error) {
+		console.log("error ==>", error);
+	} finally {
+		client.release();
+	}
+}
+
 export const InitScriptsDB = async () => {
 	const client = await getClient();
 	try {
 		client.query("BEGIN");
-		const { rows: isScripts } = (await client.query("SELECT * FROM information_schema.tables WHERE table_name = 'catalogo_filmes'"));
+		const { rows: isScripts } = (await client.query("SELECT * FROM information_schema.tables WHERE table_name = 'word_list'"));
 		if (isScripts.length) return;
 
 		const file = await readFile(resolve(__dirname, "..", "..", "..",  "scripts/scripts-ddl.sql"), { encoding: "utf-8" });
 		const SQLArray = file.split(";");
-
 		for await (const sql of SQLArray) {
 			await client.query(sql, []);
 		}
 		client.query("COMMIT");
+		insertFileTextDB();
 	} catch (err) {
 		client.query("ROLLBACK");
 	} finally {

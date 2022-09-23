@@ -1,43 +1,9 @@
-a
-a-
-a2 level
-a3
-a4
-a5
-aaa
-aaas
-aad
-aadhaar
-aam
-a — and a half
-aapa
-aardwolf
-aargh
-aaronic
-aaron's beard
-aaron's rod
-aarp
-a'asia
-aasvoel
-aau
-aaup
-ab
-ab-
-aba
-a bad apple
-a bad lot
-a bad penny always turns up
-a bad taste in someone's mouth
-a bad workman always blames his tools
-a bag of bones
-a bag of tricks
 abaht
 abandon
 abandoned
 abandonment
 abandon ship
 abandonware
-a barrel of laughs
 abase
 abasement
 abashed
@@ -45,7 +11,6 @@ abate
 abatement
 abatis
 abattoir
-a battuta
 abaxial
 abaya
 abbacy
@@ -70,8 +35,6 @@ abduct
 abductee
 abductor
 abeam
-a beam in one's eye
-a bed of roses
 abeer
 abele
 abelia
@@ -92,28 +55,16 @@ abhorrent
 abide
 abiding
 abigail
-a big deal
-a big fish
-a big fish in a small pond
 ability
 ab initio
 abiogenesis
 abiotic
-a bird in the hand is worth two in the bush
-a bit
-a bite at the cherry
-a bit much
-a bit of a —
-a bit of all right
-a bitter pill to swallow
-a bit thick
 abitur
 abject
 abjure
 abjure the realm
 abkhaz
 abkhazian
-a blast from the past
 ablative
 ablative absolute
 ablaut
@@ -123,9 +74,6 @@ able-bodied
 able-bodied seaman
 abled
 ableism
-able seaman
-a blessing in disguise
-a blot on one's escutcheon
 ablush
 abnaki
 abnegate
@@ -137,10 +85,6 @@ abnormity
 åbo
 abo
 abode
-a bold stroke
-abolish
-abolition
-a bolt from the blue
 abomasum
 abominable
 abominable snowman
@@ -168,45 +112,19 @@ abo system
 abound
 abounding
 about
-about time
-about-turn
-above
-above all
-above and beyond
-above board
-above ground
-above-named
-above oneself
-above par
-above-stated
-above suspicion
-above the bit
-above the fold
-above the law
-above the line
-ab ovo
-a bowl of cherries
 abp
 abracadabra
 abrade
 abrasion
 abrasive
-a brass farthing
 abrazo
 abreact
-abreast
-a breath of fresh air
-a breed apart
-a brick short of a load
 abridge
 abridged
 abridgement
-a bridge too far
 abroad
 abrogate
 abrogation
-a broken reed
-a broth of a boy
 abrupt
 abruption
 abruzzian
@@ -15708,51 +15626,6 @@ committeeman
 committee stage
 committeewoman
 commo
-commodification
-commodified
-commodify
-commodious
-commoditization
-commoditize
-commodity
-commodore
-common
-commonable
-common blue
-common carrier
-common chord
-common cold
-common core
-common council
-common currency
-common denominator
-common entrance
-common era
-common form
-common ground
-common gull
-commonhold
-common jury
-common knowledge
-common law
-common logarithm
-commonly
-common market
-common metre
-common noun
-common of piscary
-common or garden
-commonplace
-commonplace book
-common property
-common rat
-common room
-common seal
-common sense
-common serjeant
-common stock
-common thread
-common time
 commonweal
 commonwealth day
 common worship
@@ -15778,62 +15651,19 @@ communism
 communist
 communitarianism
 community
-community architect
-community-based
-community card
-community care
-community centre
-community charge
-community chest
-community college
-community home
-community hospital
-community immunity
-community magistrate
-community medicine
-community-minded
-community of property
-community order
-community organizer
-community organizing
-community police officer
-community policing
-community sentence
-community service
-community services card
-community singing
-community spirit
-community spread
-community-supported agriculture
-community transmission
-community worker
 commutate
-commutation ticket
 commutator
 commute
 commuter
-commuter belt
 comoran
 comorbid
 comorbidity
-compact
-compact camera
-compact car
-compact disc
-compact fluorescent light bulb
 compaction
 compadre
 compand
 compander
 companion
 companionable
-companion animal
-companion-in-arms
-companion ladder
-companion of honour
-companion of literature
-companion planting
-companion set
 companionship
 company
 company car
@@ -233375,90 +233205,3 @@ refections
 rieslings
 roadkills
 roller-skater
-rosacea
-rosti
-sasines
-saudi-arabian
-scribblings
-second-string
-semillons
-shahtooshes
-shias
-shishas
-shoulder-to-shoulder
-shuras
-shutterings
-signings
-sino
-sluiceways
-soleras
-solomon's-seal
-sororicides
-south-american
-spare-tire
-spatlese
-spatlesen
-spatleses
-specialisations
-splendours
-split-pea
-stair-rod
-stick-on
-stotties
-strappados
-sunnis
-superheavyweights
-supremes
-tandooris
-tauromachies
-technicolour
-terracottas
-time-fuse
-time-switch
-torchiere
-torchieres
-totties
-transportations
-trebbianos
-trestletrees
-triple-crown
-turk's-cap
-ubermenschen
-ultrasounds
-unlikelihoods
-upper-middle-class
-uxoricides
-value-added
-verbalisms
-voicemails
-wallboards
-water-rate
-wawas
-white-tie
-whoopies
-work-in
-workspaces
-zamindaries
-zamindaris
-zemindaris
-zinfandels
-air-headed
-anchor-person
-anchor-persons
-anchor-people
-born-agains
-breast-feeds
-car-jack
-car-jacks
-car-jacked
-cd-roms
-cdroms
-crap-shoot
-crap-shoots
-credit-worthy
-'cuz
-cuzes
-dirt-bag
-dirt-bags
--meister
-acne rosacea

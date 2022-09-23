@@ -11,6 +11,20 @@ export class WordRepository implements IWordRepository {
 		this.connectionDB = connectionDB;
 	}
 
+	getByWord(word: string): Promise<QueryResult<any>> {
+		const response = this.connectionDB.query(`
+			SELECT
+				id,
+				word,
+				ind_favorite
+			FROM
+				WORD_LIST
+			WHERE
+				word = $1
+		`, [word]);
+		return response;
+	}
+
 	async getAllFavorite(offset: number, limit: number): Promise<QueryResult<any>> {
 		const response = await this.connectionDB.query(
 			`SELECT

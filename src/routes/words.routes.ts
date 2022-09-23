@@ -2,7 +2,7 @@ import { Router } from "express";
 import { AddWordFavoriteController } from "../useWords/addWordFavorite/addWordFavoriteController";
 import { GetAllWordsController  } from "../useWords/getAllWords/getAllWordsController";
 import { GetAllWordsFavoriteController } from "../useWords/getAllWordsFavorite/getAllWordsFavoriteController";
-import { GetWordController } from "../useWords/getWord/getAllWordsController";
+import { GetWordController } from "../useWords/getWord/getWordController";
 import { RemoveWordFavoriteController } from "../useWords/removeWordFavorite/removeWordFavoriteController";
 
 const WordsRoutes = Router({ mergeParams: true });

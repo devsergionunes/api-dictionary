@@ -8,6 +8,8 @@ import { resolve } from "path";
 import { Pool, PoolClient, QueryResult, QueryResultRow } from "pg";
 import { WordRepository } from "../../repositories/implementations/WordRepository";
 
+// sudo docker run -p 5432:5432 -e POSTGRES_PASSWORD=1234 postgres
+
 export interface IPoolClient extends Omit<PoolClient, "query"> {
 	query: (queryText:string, params?: any[], callback?: (err: Error, result: QueryResult<QueryResultRow>) => void) => Promise<QueryResult<any>>;
 }
@@ -19,6 +21,7 @@ const pool = new Pool({
     port: process.env.DB_PORT,
     ssl: false,
     Promise: Promise,
+		connectionTimeoutMillis: 10000,
 });
 
 export const getClient = async () =>{
@@ -51,7 +54,7 @@ async function insertFileTextDB() {
 		const wordRepository = new WordRepository(client);
 		const wordsList = readFileSync(`${__dirname  }/words.txt`, "utf8").split("\n");
 		const words = wordsList.filter((word) => !word.includes(" "))
-		.filter((word) => word.length > 2)
+		.filter((word) => word.length > 4)
 		.filter((word) => word.length < 30)
 		// eslint-disable-next-line prefer-regex-literals
 		.filter((word) => RegExp(/^[a-zA-Z]+$/).test(word));

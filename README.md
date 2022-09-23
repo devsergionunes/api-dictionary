@@ -1,4 +1,4 @@
-# API FILMS
+# API DICTIONARY
 
 ## Tecnologias:
 
@@ -22,7 +22,7 @@
 ## ROTAS:
 
 ```
-GET /api/words
+GET /api/word
 GET /api/words/all
 GET /api/favorite
 POST /api/favorite
@@ -41,19 +41,37 @@ DELETE /api/favorite
 
 ## INICIANDO O PROJETO:
 
-banco de dados:
-
-<pre>
- docker run -p 5432:5432 -e POSTGRES_PASSWORD=1234 postgres
-</pre>
-
 clone o projeto:
 
 <pre>
-  git clone https://github.com/devsergionunes/api-filmscatalog.git
+  git clone https://github.com/devsergionunes/api-dictionary.git
+</pre>
+### banco de dados:
+
+<pre>
+ sudo docker run -p 5432:5432 -e POSTGRES_PASSWORD=1234 postgres
+</pre>
+### Variaveis de ambiente (arquivo .env):
+- Crie um arquivo .env na raiz do projeto e adicione as seguintes variaveis:
+<pre>
+ENVIRONMENT = development
+
+# config for the production environment
+BASE_URL = http://localhost
+PORT = 3333
+
+
+# api key for the app
+X_API_KEY = WENFCJKNSKDCSDNJCKNCJNCKJDcndscsnadkcndjncjkackdsdkvsnvajkdvnsjkvnkdsj
+
+# db settings
+DB_HOST = localhost
+DB_USER = postgres
+DB_PASSWORD = 1234
+DB_PORT = 5432
 </pre>
 
-Iniciar aplicação:
+## Executar aplicação:
 
 <pre>
  npm install && npm start
